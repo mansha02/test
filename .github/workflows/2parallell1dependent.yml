@@ -1,0 +1,32 @@
+name: 2parallel1dependent
+run-name: ${{ github.actor }} is learning GitHub Actions
+on: workflow_dispatch
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install -g bats
+      - run: bats -v
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install -g bats
+      - run: echo "This is JOB2"
+  job3:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install -g bats
+      - run: echo "This is JOB3"
