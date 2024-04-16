@@ -1,6 +1,6 @@
 name: ghawith2jobs
 run-name: ${{ github.actor }} is learning GitHub Actions
-on: workflow_dispatch
+on: push
 jobs:
   job1:
     runs-on: ubuntu-latest
